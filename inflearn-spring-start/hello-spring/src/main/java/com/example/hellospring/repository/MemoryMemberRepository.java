@@ -6,8 +6,8 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository {
     // NOTE: 실무에서는 동시성 문제로 ConcurrentHashMap() 사용
-    private static Map<Long, Member> store = new HashMap<>();
-    private static long sequence = 0L;
+    private Map<Long, Member> store = new HashMap<>();
+    private long sequence = 0L;
 
     @Override
     public Member save(Member member) {
@@ -34,7 +34,7 @@ public class MemoryMemberRepository implements MemberRepository {
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }
-    
+
     public void clearStore() {
         store.clear();
     }

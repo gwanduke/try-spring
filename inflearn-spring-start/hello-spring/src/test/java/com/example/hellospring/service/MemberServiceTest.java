@@ -25,7 +25,6 @@ class MemberServiceTest {
         // when (이렇게 했을 때)
         Long saveId = memberService.join(member);
 
-
         // then (검증)
         Member findMember = memberService.findOne(saveId).get();
         Assertions.assertEquals(member.getName(), findMember.getName());
