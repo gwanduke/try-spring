@@ -2,20 +2,18 @@ package com.example.hellospring.service;
 
 import com.example.hellospring.domain.Member;
 import com.example.hellospring.repository.MemoryMemberRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MemberServiceTest {
+    MemberService memberService;
+    MemoryMemberRepository memberRepository;
 
-    MemberService memberService = new MemberService();
-
-    // 실제 상황에서는 memberService에서 repository를 주입받도록 하는게 좋겠다.
-    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
+    @BeforeEach
+    public void beforeEach() {
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository);
     }
 
     @Test
