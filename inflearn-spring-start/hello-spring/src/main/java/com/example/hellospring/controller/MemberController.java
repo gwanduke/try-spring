@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 // @Controller라는 어노테이션이 있으며 스프링이 초기화되면서
 // 이 클래스를 생성하고 들고있게 됨
-@Controller
+@Controller // 컨트롤러는 SpringConfig 사용못하고 이걸 해주긴 해야함
 public class MemberController {
     private final MemberService memberService;
 
