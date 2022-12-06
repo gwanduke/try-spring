@@ -9,6 +9,7 @@
     - [통합테스트](#통합테스트)
     - [Spring JdbcTemplate](#spring-jdbctemplate)
     - [Spring JPA, Spring Data JPA](#spring-jpa-spring-data-jpa)
+    - [AOP (Aspect Oriented Programming)](#aop-aspect-oriented-programming)
 
 # 스프링 입문 스프링부트
 
@@ -135,3 +136,20 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
 - 실무에서는 JPA + 스프링 Data JPA 조합으로 사용하고
 - 복잡한 동적 쿼리는 Querydsl 라이브러리 사용
 - 위 조합으로 안되는 어려운 쿼리는 JPA의 네이티브 쿼리 or JdbcTemplate를 사용
+
+### AOP (Aspect Oriented Programming)
+
+- cross cutting concern 임 (핵심 비즈니스 로직이 아닌 것)
+- core concern과 분리하는 아이디어
+
+예를들어 함수 호출 시간을 측정하는 로직을 각각 구현해 넣으면 핵심 로직을 파악하기 힘드므로 AOP 사용
+
+```
+helloController --> memberService --> memberRepository
+           ^              ^             ^
+            \             |            /
+             \            |           /
+              \           |          /
+                    TimeTraceAop
+                    시간측정로직
+```
