@@ -7,6 +7,8 @@
     - [Spring 이 뜰 때 각 클래스의 역할을 알 수 있도록 해주어야함](#spring-이-뜰-때-각-클래스의-역할을-알-수-있도록-해주어야함)
     - [JDBC](#jdbc)
     - [통합테스트](#통합테스트)
+    - [Spring JdbcTemplate](#spring-jdbctemplate)
+    - [Spring JPA, Spring Data JPA](#spring-jpa-spring-data-jpa)
 
 # 스프링 입문 스프링부트
 
@@ -112,3 +114,24 @@ class MemberServiceIntegrationTest {
 
 - `@SpringBootTest`: 스프링 컨테이너와 테스트를 함께 실행
 - `@Transactional`: 테스트에 달면 테스트 종료시 롤백 (afterEach 같은 곳에서 초기화로직 만들지 않아도 됨)
+
+### Spring JdbcTemplate
+
+### Spring JPA, Spring Data JPA
+
+- Spring JPA - jpql을 통해 데이터베이스 조작
+- Spring Data JPA - Spring JPA를 손쉽게 사용하기 위한 도구
+
+Spring Data JPA
+
+```java
+
+public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
+    @Override
+    Optional<Member> findByName(String name); // 구현하지 않아도 됨. findBy~ 를 보고 자동으로 생성
+}
+```
+
+- 실무에서는 JPA + 스프링 Data JPA 조합으로 사용하고
+- 복잡한 동적 쿼리는 Querydsl 라이브러리 사용
+- 위 조합으로 안되는 어려운 쿼리는 JPA의 네이티브 쿼리 or JdbcTemplate를 사용

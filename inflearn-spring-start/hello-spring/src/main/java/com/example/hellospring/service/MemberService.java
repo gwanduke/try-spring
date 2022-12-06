@@ -3,10 +3,12 @@ package com.example.hellospring.service;
 import com.example.hellospring.domain.Member;
 import com.example.hellospring.repository.MemberRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 // 클래스 이름에서 cmd + shift + T -> 테스트 바로 만들 수 있음
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
 
