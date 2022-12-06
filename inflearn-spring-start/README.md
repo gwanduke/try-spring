@@ -10,6 +10,7 @@
     - [Spring JdbcTemplate](#spring-jdbctemplate)
     - [Spring JPA, Spring Data JPA](#spring-jpa-spring-data-jpa)
     - [AOP (Aspect Oriented Programming)](#aop-aspect-oriented-programming)
+  - [마무리](#마무리)
 
 # 스프링 입문 스프링부트
 
@@ -153,3 +154,8 @@ helloController --> memberService --> memberRepository
                     TimeTraceAop
                     시간측정로직
 ```
+
+## 마무리
+
+- DB 핸들링이 중요
+- 성능문제 해결 중요
