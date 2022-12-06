@@ -5,6 +5,8 @@
     - [일반적인 구조](#일반적인-구조)
     - [클래스 의존 관계](#클래스-의존-관계)
     - [Spring 이 뜰 때 각 클래스의 역할을 알 수 있도록 해주어야함](#spring-이-뜰-때-각-클래스의-역할을-알-수-있도록-해주어야함)
+    - [JDBC](#jdbc)
+    - [통합테스트](#통합테스트)
 
 # 스프링 입문 스프링부트
 
@@ -77,3 +79,36 @@ MemberService -> MemberRepository (Interface)
   - 2. 자바 코드로 직접 스프링 빈 등록하기
 
 기본적으로 주입되는 클래스는 singleton 형태로 컨테이너에 등록한다. (메모리 절약될 것)
+
+### JDBC
+
+JDBC는 고대의 기술
+
+- 라이브러리: spring-boot-starter-jdbc
+- application.properties에 DB 경로 설정
+
+대략 다음과 같은식
+
+```java
+String sql = "insert into member(name) values (?)";
+
+// ...
+connection = dataSource.getConnection();
+PreparedStatement pstmt = //...
+pstmt.setString(1, 'Gwanduk Kim');
+
+pstmt.executeUpdate();
+```
+
+### 통합테스트
+
+```java
+
+class MemberServiceIntegrationTest {
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
+}
+```
+
+- `@SpringBootTest`: 스프링 컨테이너와 테스트를 함께 실행
+- `@Transactional`: 테스트에 달면 테스트 종료시 롤백 (afterEach 같은 곳에서 초기화로직 만들지 않아도 됨)
